@@ -1,8 +1,9 @@
 import AuthForm from "../components/AuthForm";
 import { redirect } from "react-router-dom";
+import { API_BASE } from "../api/apiBase";
 
 export default function Login() {
-  return <AuthForm/>;
+  return <AuthForm />;
 }
 
 export async function action({ request }) {
@@ -22,7 +23,7 @@ export async function action({ request }) {
   const authData = {
     email: data.get("email"),
     password: data.get("password"),
-    username: data.get("userName"),
+    name: data.get("userName"),
   };
 
   const response = await fetch(`${API_BASE}/auth/` + mode, {
@@ -56,15 +57,15 @@ export async function action({ request }) {
     });
   }
 
-  const resData = await response.json();
-  const token = resData.data.access_token;
+  if (mode === "signup") {
+    return redirect("/auth?mode=login&message=sigup-success");
+  }
 
-  // 2.mode가 login일때만 localStorage에 token을 저장해서 로그인하고
-  // 2. signup일 경우에는 백엔드에 토큰생성 전송은 하되 로그인을 해야지만 토큰이 localStorage저장되어서 / url로 넘어가는 동작을 구현하고싶어.
   if (mode === "login") {
-    localStorage.setItem("token", token);
+    const mockToken = "mock-token-" + Math.random().toString(36).slice(2);
+
+    localStorage.setItem("token", mockToken);
+
     return redirect("/");
-  } else {
-    return redirect("/auth?mode=login&message=signup-success");
   }
 }
