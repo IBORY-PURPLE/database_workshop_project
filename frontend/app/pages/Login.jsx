@@ -62,6 +62,10 @@ export async function action({ request }) {
   }
 
   if (mode === "login") {
+    const resData = await response.json();
+    console.log("user_id출력: ", resData.user_id);
+
+    localStorage.setItem("user_id", resData.user_id);
     const mockToken = "mock-token-" + Math.random().toString(36).slice(2);
 
     localStorage.setItem("token", mockToken);

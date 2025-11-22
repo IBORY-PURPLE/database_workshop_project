@@ -32,7 +32,9 @@ function AuthForm() {
                 {isLogin ? "로그인" : "회원가입"}
               </h1>
               <p className="text-gray-600">
-                {isLogin ? "로그인 되었습니다." : "지금 계정을 생성하세요"}
+                {isLogin
+                  ? "아이디와 비밀번호를 입력해주세요."
+                  : "지금 계정을 생성하세요"}
               </p>
             </div>
 
