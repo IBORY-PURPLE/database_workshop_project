@@ -1,19 +1,22 @@
 import { API_BASE } from "./apiBase";
 
 // 전체 게시글 가져오기
-// export async function fetchPosts() {
-//   const res = await fetch(`${API_BASE}/posts`, {
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   });
+export async function getAllPosts() {
+  const res = await fetch(`${API_BASE}/post`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 
-//   if (!res.ok) {
-//     throw new Error("게시글 목록을 가져오지 못했음");
-//   }
+  if (!res.ok) {
+    throw new Error("게시글 목록을 가져오지 못했음");
+  }
 
-//   return res.json(); // 백엔드에서 posts 배열 리턴한다고 가정
-// }
+  const data = await res.json();
+  console.log(data);
+  return data;
+}
 
 // 게시글 생성
 export async function createPost({ title, content, user_id, tags, images }) {
