@@ -4,9 +4,10 @@ import Login, { action as loginAction } from "./pages/Login.jsx";
 import RootLayout from "./pages/Root.jsx";
 import { action as logoutAction } from "./pages/Logout.jsx";
 import CreatePostPage from "./pages/CreatePostPage.jsx";
+import MyPage from "./pages/MyPage.jsx";
 
 function tokenLoader() {
-  return localStorage.getItem("token");
+  return localStorage.getItem("user_id");
 }
 
 export const router = createBrowserRouter([
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
       {
         path: "posts/create",
         element: <CreatePostPage />,
+      },
+      {
+        path: "mypage",
+        element: <MyPage />,
       },
     ],
   },

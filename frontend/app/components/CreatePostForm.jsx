@@ -118,7 +118,7 @@ function CreatePostForm({ userId }) {
       <button
         type="submit"
         disabled={isPending}
-        className="px-4 py-2 rounded bg-black text-white disabled:opacity-60"
+        className="mt-6 inline-block px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white cursor-pointer"
       >
         {isPending ? "등록 중..." : "게시글 등록"}
       </button>
