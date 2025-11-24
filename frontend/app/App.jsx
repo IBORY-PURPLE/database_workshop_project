@@ -5,6 +5,7 @@ import RootLayout from "./pages/Root.jsx";
 import { action as logoutAction } from "./pages/Logout.jsx";
 import CreatePostPage from "./pages/CreatePostPage.jsx";
 import MyPage from "./pages/MyPage.jsx";
+import PostDetailPage from "./pages/PostDetailPage.jsx";
 
 function tokenLoader() {
   return localStorage.getItem("user_id");
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: "mypage",
         element: <MyPage />,
+      },
+      {
+        path: "posts/:postId",
+        element: <PostDetailPage />,
       },
     ],
   },
