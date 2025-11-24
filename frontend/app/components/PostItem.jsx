@@ -1,6 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { useLike } from "../hook/useLike";
 
 export default function PostItem({ post }) {
+  const postId = post.post_id;
+  const { isLiked, likeCount, toggleLike, isLoading } = useLike({
+    postId: post.post_id,
+    initialLikeCount: post.like_count,
+  });
   return (
     <div className="border p-4 rounded-lg shadow-md bg-white mb-4">
       {/* 이미지 */}
@@ -36,7 +43,27 @@ export default function PostItem({ post }) {
       </div>
 
       {/* 좋아요 */}
-      <div className="text-gray-500 text-sm">❤️ {post.like_count}</div>
+      <button
+        onClick={toggleLike}
+        disabled={isLoading}
+        className={`inline-flex items-center gap-2 text-sm px-3 py-1 rounded-full border ${
+          isLiked
+            ? "bg-rose-100 border-rose-300 text-rose-600"
+            : "bg-gray-50 border-gray-300 text-gray-600"
+        } ${isLoading ? "opacity-60 cursor-not-allowed" : ""}`}
+      >
+        <span>{isLiked ? "❤️" : "🤍"}</span>
+        <span>{likeCount}</span>
+      </button>
+      {postId && (
+        <Link
+          to={`/posts/${postId}`}
+          state={{ post }} // 디테일에서 바로 보여줄 수 있도록
+          className="inline-flex items-center text-emerald-600 hover:underline text-sm"
+        >
+          댓글 보기 / 작성하기
+        </Link>
+      )}
     </div>
   );
 }
