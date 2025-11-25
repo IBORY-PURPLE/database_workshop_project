@@ -66,6 +66,7 @@ export async function action({ request }) {
     console.log(resData);
     localStorage.setItem("user_id", resData.user_id);
     localStorage.setItem("name", resData.name);
+    localStorage.setItem("email", resData.email);
 
     return redirect("/");
   }
