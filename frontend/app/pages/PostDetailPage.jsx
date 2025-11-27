@@ -1,11 +1,6 @@
 // app/pages/PostDetail.jsx
 import React, { useState } from "react";
-import {
-  useParams,
-  useLocation,
-  useNavigate,
-  navigate,
-} from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import PostItem from "../components/PostItem";
 import { useComments } from "../hook/useComments.jsx";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
