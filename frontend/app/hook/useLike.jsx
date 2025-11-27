@@ -3,10 +3,14 @@ import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createLike, deleteLike } from "../api/likeApi";
 
-export function useLike({ postId, initialLikeCount }) {
+export function useLike({
+  postId,
+  initialIsLiked = false,
+  initialLikeCount = 0,
+}) {
   const userId = localStorage.getItem("user_id");
 
-  const [isLiked, setIsLiked] = useState(false); // 항상 false에서 시작
+  const [isLiked, setIsLiked] = useState(!!initialIsLiked); // 항상 false에서 시작
   const [likeCount, setLikeCount] = useState(initialLikeCount ?? 0);
 
   const queryClient = useQueryClient();

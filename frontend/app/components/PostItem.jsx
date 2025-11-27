@@ -6,6 +6,7 @@ export default function PostItem({ post }) {
   const postId = post.post_id;
   const { isLiked, likeCount, toggleLike, isLoading } = useLike({
     postId: post.post_id,
+    initialIsLiked: post.is_liked,
     initialLikeCount: post.like_count,
   });
   return (
@@ -58,7 +59,9 @@ export default function PostItem({ post }) {
       {postId && (
         <Link
           to={`/posts/${postId}`}
-          state={{ post }} // 디테일에서 바로 보여줄 수 있도록
+          state={{
+            post: { ...post, is_liked: isLiked, like_count: likeCount },
+          }} // 디테일에서 바로 보여줄 수 있도록
           className="inline-flex items-center text-emerald-600 hover:underline text-sm"
         >
           댓글 보기 / 작성하기

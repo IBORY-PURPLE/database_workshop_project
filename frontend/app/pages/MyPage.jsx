@@ -16,7 +16,7 @@ export default function MyPage() {
     data: myPosts = [],
     isLoading,
     error,
-  } = usePosts({ enabled: !!userId, userId });
+  } = usePosts({ enabled: !!userId, userId, mode: "mineOrLiked" });
 
   const {
     profile,
@@ -53,7 +53,7 @@ export default function MyPage() {
           <div>
             <h1 className="text-3xl font-bold mb-1">My Page</h1>
             <p className="text-sm text-slate-300">
-              내가 업로드한 게시물만 모아봤음.
+              내가 업로드했거나 좋아요한 게시물만 모아봤음.
             </p>
           </div>
 
