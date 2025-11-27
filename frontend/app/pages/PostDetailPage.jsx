@@ -1,6 +1,11 @@
 // app/pages/PostDetail.jsx
 import React, { useState } from "react";
-import { useParams, useLocation, useNavigate } from "react-router-dom";
+import {
+  useParams,
+  useLocation,
+  useNavigate,
+  navigate,
+} from "react-router-dom";
 import PostItem from "../components/PostItem";
 import { useComments } from "../hook/useComments.jsx";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -41,7 +46,7 @@ export default function PostDetail() {
       setEditTitle(updated.title);
       setEditContent(updated.content);
       setEditHashtags(updated.hashtag?.map((h) => h.word).join(", ") ?? "");
-      // location.state.post 도 같이 갱신해주고 싶으면 navigate로 state 덮어쓰기 가능
+      navigate("/");
     },
     onError: (err) => {
       alert(err.message);
